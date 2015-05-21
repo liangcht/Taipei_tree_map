@@ -19,6 +19,8 @@ google.load('visualization', '1', {});
 var type = 0,
 bandid = '1MTG5aD_8QB57gTl0nkh4_Yfk4DsUNA0fX4zfbm4',
 radioid = '1u8pAfKtChPSCm1-v-4HM3js2CqMAVkHLA4SfEhU',
+data_taipei_treeid = '2615ee1b-08c7-4cc6-9ade-7cf1a81eb93d',
+treeid = '1MPt7TDkCz47_oZZ2VGGZZ1X8UcfeIb0jNGv0-8gb',
 map,
 geocoder,
 markerArr = [],
@@ -28,10 +30,10 @@ ibArr = [],
 inactiveMarker = "http://www.bestofbritishunsigned.com/music-map/images/band-marker.png",
 activeMarker = "http://www.bestofbritishunsigned.com/music-map/images/band-marker-selected.png",
 farZoom = 3,
-closeZoom = 6,
+closeZoom = 12,
 maxZoomLevel = 3,
-closeLat = 54.597528,
-closeLng = - 7.69043,
+closeLat = 25.043454,
+closeLng = 121.538808,
 farLat = 30.597528,
 farLng = - 9.69043;
 
@@ -172,6 +174,7 @@ function setData(tableid) {
         markerArr = [];
     }
     var query = new google.visualization.Query("http://www.google.com/fusiontables/gvizdata?tq=" + encodeURIComponent("SELECT * FROM " + tableid));
+    //var query = new google.visualization.Query("http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=" + tableid + "&format=xml");
     query.send(getData);
 }
 function getData(response) {
@@ -442,44 +445,45 @@ function codeAddress(row, currentIdx) {
     });
 }
 function initialize() {
-    var mapStyle = [{
-        featureType: "administrative",
-        stylers: [{
-            visibility: "off"
-        }
-        ]
-    }, {
-        featureType: "poi",
-        stylers: [{
-            visibility: "off"
-        }
-        ]
-    }, {
-        featureType: "road",
-        stylers: [{
-            visibility: "off"
-        }
-        ]
-    }, {
-        featureType: "transit",
-        stylers: [{
-            visibility: "off"
-        }
-        ]
-    }, {
-        featureType: "water",
-        stylers: [{
-            visibility: "simplified"
-        }
-        ]
-    }, {
-        featureType: "landscape",
-        elementType: "labels",
-        stylers: [{
-            visibility: "off"
-        }
-        ]
-    }
+    var mapStyle = [
+    // {
+    //     featureType: "administrative",
+    //     stylers: [{
+    //         visibility: "off"
+    //     }
+    //     ]
+    // }, {
+    //     featureType: "poi",
+    //     stylers: [{
+    //         visibility: "off"
+    //     }
+    //     ]
+    // }, {
+    //     featureType: "road",
+    //     stylers: [{
+    //         visibility: "off"
+    //     }
+    //     ]
+    // }, {
+    //     featureType: "transit",
+    //     stylers: [{
+    //         visibility: "off"
+    //     }
+    //     ]
+    // }, {
+    //     featureType: "water",
+    //     stylers: [{
+    //         visibility: "simplified"
+    //     }
+    //     ]
+    // }, {
+    //     featureType: "landscape",
+    //     elementType: "labels",
+    //     stylers: [{
+    //         visibility: "off"
+    //     }
+    //     ]
+    // }
     ];
     var styledMap = new google.maps.StyledMapType(mapStyle, {
         name: "Styled Map"
@@ -506,7 +510,7 @@ function initialize() {
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
     map.mapTypes.set("map_style", styledMap);
     map.setMapTypeId("map_style");
-    setData(bandid);
+    setData(treeid);
 }
 $(window).on("load", this, function(e) {
     initialize();
