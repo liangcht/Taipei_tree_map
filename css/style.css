@@ -107,12 +107,15 @@ footer p a:hover,footer p a:active,footer p a:focus {color:#D84500;}
 #left-main hr {display:block;height:0px;margin:30px 0;border:0 none;outline:0 none;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";filter:alpha(opacity=0);-moz-opacity:0;-khtml-opacity:0;opacity:0;}
 #left-main .location,
 #left-main .webLink,
+#left-main .admin,
 #left-main .featuredOn {display:block;word-wrap: break-word;padding-left:40px;line-height:24px;color:#21344e;word-wrap: break-word;}
  #left-main .location, #left-main .featuredOn {margin-bottom:10px;font-size:18px;background:url(../images/icon-location.png) no-repeat center left;}
+ #left-main .admin {margin-bottom:10px;font-size:18px;background:url(../images/icon-admin.png) no-repeat center left;}
  #left-main .location.station {background-image:url(../images/icon-location-station.png);}
  #left-main .webLink {font-family:Helvetica, Arial, sans-serif;font-size:14px;background:url(../images/icon-weblink.png) no-repeat center left;}
  #left-main .webLink:hover,#left-main .webLink:active,#left-main .webLink:focus{color:#D84500;}
- #left-main .featuredOn {margin-top: 20px; background:none;}
+ #left-main .featuredOn {margin-top: 20px; background:none; }
+ #left-main .pic {word-wrap: break-word;display:block; margin-top: 20px; background:none; max-width: 100%; height: auto;}
 .infoBox {padding-bottom:6px;font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;font-size:12px;line-height:15px;color:#fff;text-align:center;background:url('../images/bg-bubble-tail.png') no-repeat bottom center;}
  .infoBox div {min-width:100px;padding: 8px 12px 5px 12px;background: #22354f;border: 0 none;border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;}
 /********************************** MENUS **********************************/

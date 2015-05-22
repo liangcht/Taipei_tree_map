@@ -27,8 +27,8 @@ markerArr = [],
 bandArr = [],
 radioArr = [],
 ibArr = [],
-inactiveMarker = "http://www.bestofbritishunsigned.com/music-map/images/band-marker.png",
-activeMarker = "http://www.bestofbritishunsigned.com/music-map/images/band-marker-selected.png",
+inactiveMarker = 'images/Tree.png' ,//"http://www.bestofbritishunsigned.com/music-map/images/band-marker.png",
+activeMarker = 'images/Tree-3.png', //"http://www.bestofbritishunsigned.com/music-map/images/band-marker-selected.png",
 farZoom = 6,
 closeZoom = 12,
 maxZoomLevel = 3,
@@ -36,7 +36,8 @@ closeLat = 25.043454,
 closeLng = 121.538808,
 farLat = 25.043454,
 farLng = 121.538808,
-GoogleFusionTablesAPIkey = 'AIzaSyBCUUAjeEqzjKc3rIc7-pqFVFEpGFvsawo';
+GoogleFusionTablesAPIkey = 'AIzaSyBCUUAjeEqzjKc3rIc7-pqFVFEpGFvsawo',
+treewebsiteLink = 'http://www.culture.gov.taipei/frontsite/tree/treeProtectListAction.do?method=doReadDetail&treeId=';
 
 
 
@@ -135,7 +136,7 @@ google.maps.Map.prototype.showMarkers = function(markerIdx) {
 function updateDataHeight($data) {
     $("#left-main").animate({
         height: $data.outerHeight(true)
-    }, 250);
+    }, 500);
 }
 function optSort(a, b) {
     return (a.value > b.value) ? 1 : - 1;
@@ -344,7 +345,7 @@ function createInfoBox(marker, row, currentIndex) {
         ibArr[currentIndex].show();
     } else {
         var boxText = document.createElement("div");
-        boxText.innerHTML = row[0];
+        boxText.innerHTML = row[1];
         var myOptions = {
             content: boxText,
             disableAutoPan: false,
@@ -372,7 +373,7 @@ function addMarker(coordinate, row) {
         animate: google.maps.Animation.DROP,
         icon: new google.maps.MarkerImage(inactiveMarker),
         location: (type == 0) ? row[2]: row[3],
-        name: row[0],
+        name: row[1],
         genre: (type == 0) ? row[8]: row[10],
         show: (type == 0) ? row[9]: row[11]
     });
@@ -487,11 +488,16 @@ function codeAddress(row, currentIdx) {
     var coordinate = new google.maps.LatLng(row[22], row[21]);
     var marker = addMarker(coordinate, row);
     if (type == 0) {
-        var dataHTML = "<h3> No." + row[0].toString() + ',' + row[3] +'</h3><span class="location">' + row[18] + ',' + row[19] + "</span>";
-        /*
-        if (row[3]) {
-            dataHTML = dataHTML + '<a class="webLink" href="' + row[3] + '" title="" target="_blank" rel="nofollow">' + row[3] + "</a>";
+        var dataHTML = "<h3> " + row[1].toString() + '.  '+ row[3]  +'</h3><span class="admin">' + row[5]  + "</span>";
+        
+        if (row[17]) {
+            dataHTML = dataHTML + '<a class="webLink" href="' + treewebsiteLink + row[0] + '" title="" target="_blank" rel="nofollow">' + "Detailed Information" + "</a>";
         }
+        if (row[15]) {
+            dataHTML = dataHTML + '<img class="pic" src="' + row[15] + '" alt="Smiley face">';
+        }
+        
+        /*
         if (row[5] || row[6] || row[7]) {
             dataHTML = dataHTML + '<ul class="social">';
             if (row[5]) {
