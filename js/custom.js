@@ -72,10 +72,10 @@ google.maps.Map.prototype.clearMarkers = function(markerIdx) {
 google.maps.Map.prototype.disableMarkers = function(markerIdx) {
     markerIdx = (typeof markerIdx != "undefined" && markerIdx >= 0) ? markerIdx : - 1;
     if (type == 0) {
-        tempInactiveMarker = inactiveMarker.replace("radio", "band").replace(".png", "-disabled.png");
+        tempInactiveMarker = inactiveMarker.replace("Tree", "Tree-3").replace(".png", "-disabled.png");
     } else {
         if (type == 1) {
-            tempInactiveMarker = inactiveMarker.replace("band", "radio").replace(".png", "-disabled.png");
+            tempInactiveMarker = inactiveMarker.replace("Tree-3", "Tree").replace(".png", "-disabled.png");
         }
     }
     if (typeof markerIdx != "undefined" && markerIdx >= 0) {
@@ -92,10 +92,10 @@ google.maps.Map.prototype.showMarkers = function(markerIdx) {
     markerIdx = (typeof markerIdx != "undefined" && markerIdx >= 0) ? markerIdx : - 1;
     tempMarkerArr = markerArr;
     if (type == 0) {
-        tempInactiveMarker = inactiveMarker.replace("radio", "band");
+        tempInactiveMarker = inactiveMarker.replace("Tree", "Tree-3");
     } else {
         if (type == 1) {
-            tempInactiveMarker = inactiveMarker.replace("band", "radio");
+            tempInactiveMarker = inactiveMarker.replace("Tree-3", "Tree");
         }
     }
     if (typeof markerIdx != "undefined" && markerIdx >= 0) {
@@ -104,15 +104,10 @@ google.maps.Map.prototype.showMarkers = function(markerIdx) {
         tempMarkerArr[markerIdx][0].setClickable(true);
         var lat = tempMarkerArr[markerIdx][0].getPosition().lat();
         var lng = tempMarkerArr[markerIdx][0].getPosition().lng();
-        if ((lat < 49.6 || lat > 61) && (lng<-13.41 || lng>-1.46)) {
-            map.setZoom(farZoom);
-            var latLng = new google.maps.LatLng(lat, lng);
-            map.panTo(latLng);
-        } else {
-            map.setZoom(closeZoom);
-            var latLng = new google.maps.LatLng(lat, lng);
-            map.panTo(latLng);
-        }
+        
+        map.setZoom(closeZoom);
+        var latLng = new google.maps.LatLng(lat, lng);
+        map.panTo(latLng);
     } else {
         for (var i = 0; i < tempMarkerArr.length; i++) {
             tempMarkerArr[i][0].setIcon(tempInactiveMarker);
@@ -120,15 +115,10 @@ google.maps.Map.prototype.showMarkers = function(markerIdx) {
             tempMarkerArr[i][0].setClickable(true);
             var lat = tempMarkerArr[i][0].getPosition().lat();
             var lng = tempMarkerArr[i][0].getPosition().lng();
-            if ((lat < 49.6 || lat > 61) && (lng<-13.41 || lng>-1.46)) {
-                map.setZoom(farZoom);
-                var latLng = new google.maps.LatLng(farLat, farLng);
-                map.panTo(latLng);
-            } else {
-                map.setZoom(closeZoom);
-                var latLng = new google.maps.LatLng(closeLat, closeLng);
-                map.panTo(latLng);
-            }
+            
+            map.setZoom(closeZoom);
+            var latLng = new google.maps.LatLng(closeLat, closeLng);
+            map.panTo(latLng);
         }
     }
     markerArr = tempMarkerArr;
@@ -136,7 +126,7 @@ google.maps.Map.prototype.showMarkers = function(markerIdx) {
 function updateDataHeight($data) {
     $("#left-main").animate({
         height: $data.outerHeight(true)
-    }, 500);
+    }, 250);
 }
 function optSort(a, b) {
     return (a.value > b.value) ? 1 : - 1;
@@ -297,8 +287,9 @@ function changeData(marker, currentIdx, dataHTML, clear) {
                 updateDataHeight($(this));
             });
             $("#no-data").fadeOut(200);
-            var twitAcc = $("#full-data #twitter-feed").data("account");
-            var $twitFeed = $("#full-data #twitter-feed .tweets");
+            //var twitAcc = $("#full-data #twitter-feed").data("account");
+            //var $twitFeed = $("#full-data #twitter-feed .tweets");
+            /*
             if (twitAcc) {
                 $.jTwitter(twitAcc, 1, function(data) {
                     $twitFeed.siblings("#loading-tweets").fadeIn(600);
@@ -329,6 +320,7 @@ function changeData(marker, currentIdx, dataHTML, clear) {
                     }
                 });
             }
+            */
         }).fadeOut(600);
     } else {
         markerArr[currentIdx][1] = false;
@@ -345,7 +337,7 @@ function createInfoBox(marker, row, currentIndex) {
         ibArr[currentIndex].show();
     } else {
         var boxText = document.createElement("div");
-        boxText.innerHTML = row[1];
+        boxText.innerHTML = row[1] + ". " + row[3] ;
         var myOptions = {
             content: boxText,
             disableAutoPan: false,
@@ -374,8 +366,8 @@ function addMarker(coordinate, row) {
         icon: new google.maps.MarkerImage(inactiveMarker),
         location: (type == 0) ? row[2]: row[3],
         name: row[1],
-        genre: (type == 0) ? row[8]: row[10],
-        show: (type == 0) ? row[9]: row[11]
+        genre: row[18],
+        show: row[3]
     });
     markerArr.push([marker, false]);
     return marker;
@@ -667,9 +659,9 @@ jQuery(document).ready(function($) {
         if (v == "") {
             $customInner = $(this).next(".customSelect").children(" .customSelectInner");
             if (selectID == "genre") {
-                $customInner.text("Genres");
+                $customInner.text("種類");
             } else {
-                $customInner.text("Show #");
+                $customInner.text("行政區");
             }
         }
     });
@@ -709,6 +701,7 @@ jQuery(document).ready(function($) {
         }
     });
     */
+    /*
     $searchIn.on("keyup", this, function(e) {
         var k = e.keyCode || e.which;
         var v = $(this).val().toLowerCase();
@@ -751,6 +744,7 @@ jQuery(document).ready(function($) {
             $autoComp.slideUp(250);
         }
     });
+    */
     $sortGenre.add($sortShow).on("change", this, function(e) {
         var v = $(this).val();
         var selectID = $(this).attr("id").split("-")[1];
@@ -766,9 +760,9 @@ jQuery(document).ready(function($) {
                 $(this).siblings("select").find("option.top").attr("selected", "selected");
                 $customInner = $(this).next(".customSelect").children(" .customSelectInner");
                 if (selectID == "genre") {
-                    $customInner.text("Genres");
+                    $customInner.text("種類");
                 } else {
-                    $customInner.text("Show #");
+                    $customInner.text("行政區");
                 }
             } else {
                 for (var i = 0, len = autoArr.length; i < len; i++) {
@@ -796,6 +790,7 @@ jQuery(document).ready(function($) {
             }
         }
     });
+    /*
     $searchForm.on("submit", this, function(e) {
         e.preventDefault();
         var v = $searchIn.val().toLowerCase();
@@ -851,4 +846,5 @@ jQuery(document).ready(function($) {
         updateFilters(markerArr);
         $(this).find("select").val($(this).find("select option.top").val()).change();
     });
+    */
 });
