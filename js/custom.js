@@ -580,13 +580,14 @@ function codeAddress(row, currentIdx) {
 }
 function initialize() {
     var mapStyle = [
-    // {
-    //     featureType: "administrative",
-    //     stylers: [{
-    //         visibility: "off"
-    //     }
-    //     ]
-    // }, {
+    {
+        featureType: "administrative",
+        stylers: [{
+            visibility: "on"
+        }
+        ]
+    }
+    //, {
     //     featureType: "poi",
     //     stylers: [{
     //         visibility: "off"
