@@ -53,7 +53,7 @@ header {background:#172536; color:#d2dfe5; padding:0; height:60px;z-index:999;}
 #map-canvas {position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;}
 footer {position:absolute;bottom:36px;left:0;z-index:9999;}
 /********************************** HEADERS **********************************/
-#left-main h3 {color:#336600;font-size:28px;line-height:33px;margin:0 auto 20px auto;text-align:center;}
+#left-main h3 {color:#33CC00;font-size:28px;line-height:33px;margin:0 auto 20px auto;text-align:center;}
 #left-main h4 {color:#21344e;font-size:20px;line-height:24px;margin:0 0 15px 0;text-align:center;text-transform:uppercase;}
 /********************************** TEXT *************************************/
 #left-main p {width:235px;font-family:"HelveticaLight", Helvetica, Arial, sans-serif;font-size:15px;line-height:25px;color:#3b3b3b;word-wrap: break-word;}
