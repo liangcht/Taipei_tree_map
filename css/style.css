@@ -43,7 +43,7 @@ header {background:#172536; color:#d2dfe5; padding:0; height:60px;z-index:999;}
   #logo {width:130px; height:50px;display:block;float:left;}
    #logo img {display:block;border:0 none;}
 #left-top,#left-main {position:relative;margin-top:20px;margin-left:20px;z-index:100;float:left;}
-#left-main {border:10px solid #22354f; width:265px; height:392px; min-height:160px;margin-bottom:75px; padding: 20px 0;background:url(../images/left-container-bg.jpg) repeat 0 0; border-radius:12px; -moz-border-radius:12px; -webkit-border-radius:12px;clear:both;}
+#left-main {border:10px solid #70B01F; width:265px; height:392px; min-height:160px;margin-bottom:75px; padding: 20px 0; background:url(../images/white.png) repeat 0 0; border-radius:12px; -moz-border-radius:12px; -webkit-border-radius:12px;clear:both;}
 #left-main-inner {}
 #loading-data,#no-data,#full-data {position:absolute;top:20px;display:none;width:235px;padding:0 15px;z-index:100;}
  #loading-data,#loading-tweets {text-align:center;}
